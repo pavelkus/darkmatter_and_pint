@@ -27,6 +27,16 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 
 2. To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/abs/1612.06789/>`_ and `here <https://arxiv.org/abs/1910.08544/>`_ .
 
+More information
+----------------
+
+If you wish to find:
+* a brief summary of the relevant theory,
+* used data (.par and .tim files),
+* Colab projects (online Jupiter notebooks provided by Google),
+you can go to `this Google disk <https://drive.google.com/drive/folders/1magzC6W0NgJsdsqvJf_niXF6-djLiOOW?usp=share_link/>`_.
+
+
 
 
 
