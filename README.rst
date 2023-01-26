@@ -27,7 +27,11 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 
 * To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/pdf/1612.06789.pdf/>`and `here <https://arxiv.org/abs/1910.08544/>` .
 
-$$ a_0 = 5 $$
+BT-model
+---------
+
+The part of time delay coming from a binary pulsar is:
+$$ Δ = 5 $$
 
 
 
