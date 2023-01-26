@@ -1,4 +1,4 @@
-Searching for Dark matter with PINT
+Constraining Dark matter models with PINT
 ====
 
 Project objectives
