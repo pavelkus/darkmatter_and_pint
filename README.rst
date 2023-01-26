@@ -16,7 +16,7 @@ when applying the least square minimization procedure to fit the timing model pa
 
 * Assumption
 Although the interaction can be both gravitational and direct, the former one is expected to be too weak 
-for having imprints in measured data. Therefore, we only include into our analysis direct interaction and 
+for having significant imprints in measured data. Therefore, we only include into our analysis direct interaction and 
 aim to use data to set upper bounds on direct interaction constants.
 
 * Current status and objectives
@@ -27,11 +27,6 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 
 * To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/pdf/1612.06789.pdf/>`and `here <https://arxiv.org/abs/1910.08544/>` .
 
-BT-model
----------
-
-The part of time delay coming from a binary pulsar is:
-$$ {\delta} = 5 $$
 
 
 
