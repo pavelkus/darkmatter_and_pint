@@ -23,9 +23,9 @@ aim to use data to set upper bounds on direct interaction constants.
 This project is a work in progress and this repository includes the last modifications of PINT's code,
 so it accounts for the dark matter effects on binary systems. Current objectives are:
 
-* To modify the BT binary model (Blandford and Teukolsky, 1976), so it accounts for time-dependent period (plus derived quntities, including the Kepler equation). Variations of other orbital parameters are not considered.
+** To modify the BT binary model (Blandford and Teukolsky, 1976), so it accounts for time-dependent period (plus derived quntities, including the Kepler equation). Variations of other orbital parameters are not considered.
 
-* To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/abs/1612.06789/>`_ and `here <https://arxiv.org/abs/1910.08544/>`_ .
+** To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/abs/1612.06789/>`_ and `here <https://arxiv.org/abs/1910.08544/>`_ .
 
 
 
