@@ -36,7 +36,7 @@ If you wish to find:
 
 * used data (.par and .tim files),
 
-* Colab projects (online Jupiter notebooks provided by Google),
+* pulsar timing Colab projects (online Jupiter notebooks provided by Google),
 you can go to `this Google disk <https://drive.google.com/drive/folders/1magzC6W0NgJsdsqvJf_niXF6-djLiOOW?usp=share_link/>`_.
 
 
