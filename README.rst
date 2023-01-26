@@ -32,18 +32,7 @@ BT binary model
 ----------------
 
 This equation relates pulse's coordinate time of arrival to the SSB and pulsar's proper time of emission of this pulse:
-$$
-    T_{\mathrm{prop}} = t_{\mathrm{arr}} - \Delta(t_{\mathrm{arr}}),
-$$
-$$
-   \Delta = \left( L_1 + L_2 \right)R,
-$$
-where we defined:
-$$
-   L_1 &= \alpha\left(\cos E - e \right),\\
-   L_2 &= \left(\beta + \gamma\right)\sin E,\\
-   R &= 1 + 2\pi \frac{\alpha \sin E - \left( \beta + \gamma \right) \cos E}{P_b\left(1-e\cos E \right)}.
-$$
+$$   T_{\mathrm{prop}} = t_{\mathrm{arr}} - \Delta(t_{\mathrm{arr}}), $$
 
 
 
