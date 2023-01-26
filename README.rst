@@ -27,21 +27,7 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 
 * To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/pdf/1612.06789.pdf/>`and `here <https://arxiv.org/abs/1910.08544/>` .
 
-
-BT binary model
-----------------
-
-This equation relates pulse's coordinate time of arrival to the SSB and pulsar's proper time of emission of this pulse:
-$$   T_{\mathrm{prop}} = t_{\mathrm{arr}} - \Delta(t_{\mathrm{arr}}), $$
-
-
-
-
-
-
-Scalar dark matter, universal interaction
-------------------------------------------
-
+$$ a_0 = 5 $$
 
 
 
