@@ -31,7 +31,7 @@ BT-model
 ---------
 
 The part of time delay coming from a binary pulsar is:
-$$ \\delta = 5 $$
+$$ {\delta} = 5 $$
 
 
 
