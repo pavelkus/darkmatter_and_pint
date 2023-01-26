@@ -25,7 +25,7 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 
 * To modify the BT binary model (Blandford and Teukolsky, 1976), so it accounts for time-dependent period (plus derived quntities, including the Kepler equation). Variations of other orbital parameters are not considered.
 
-* To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/pdf/1612.06789.pdf/>`_ and `here <https://arxiv.org/abs/1910.08544/>`_ .
+* To constraint a coupling constant of universal direct interaction between scalar DM-ordinary matter. You can check it `here <https://arxiv.org/abs/1612.06789/>`_ and `here <https://arxiv.org/abs/1910.08544/>`_ .
 
 
 
