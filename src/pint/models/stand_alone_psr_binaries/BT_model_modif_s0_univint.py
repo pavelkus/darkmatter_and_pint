@@ -256,6 +256,21 @@ class BTmodel_modif_s0_univint(PSR_BINARY):
     def d_delayL2_d_T0(self):
         return self.d_delayL2_d_E() * self.d_E_d_T0()
 
+    # 
+    def d_delayL1_d_ADM1(self):
+
+        omegab = 2*np.pi/(self.pb())
+
+        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * (  np.cos(self.BDM) - np.cos(self.MDM/omegab * self.E() + self.BDM  )   )
+
+    def d_delayL1_d_ADM1(self):
+
+        omegab = 2*np.pi/(self.pb())
+
+        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * E()
+
+
+
     def d_delayL1_d_par(self, par):
         if par not in self.binary_params:
             errorMesg = par + " is not in binary parameter list."
