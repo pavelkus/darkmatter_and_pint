@@ -109,13 +109,13 @@ class PSR_BINARY:
             "XPBDOT": 0.0 * u.day / u.day,
             "M2": 0.0 * u.M_sun,
             "SINI": 0 * u.Unit(""),
-            "GAMMA": 0 * u.second,
+            "GAMMA": 0 * u.second,                      #PK: (1) this is added here and also in the class BinaryBT_modif_s0_univint, in the module binary_bt_modif_s0_univint.py
             "FB0": 1.1574e-6 * u.Unit("") / u.second,
-            # added parameters
-            #"ADM1": 0 * u.Unit(""),
-            #"Adm2": 0 * u.Unit(""),
-            #"BDM": 0 * u.deg, # but maybe it should be radians, check that!
-            #"MDM": 0 * 1/u.second,
+            #PK: (2) we add the following parameters
+            "ADM1": 0 * u.Unit(""),
+            "ADM2": 0 * u.Unit(""),
+            "BDM": 0 * u.deg, #PK: but maybe it should be radians, check that!
+            "MDM": 0 * 1/u.second,
         }
         # For Binary phase calculation
         self.param_default_value.update(
