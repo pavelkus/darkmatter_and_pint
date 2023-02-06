@@ -17,7 +17,23 @@ from pint.models.stand_alone_psr_binaries.binary_orbits import OrbitPB
 SECS_PER_JUL_YEAR = SECS_PER_DAY * 365.25
 
 
-class PSR_BINARY:
+
+# PK:
+"""
+1. GAMMA is not a parameter for which we perform the fitting. It is a derived quantity, which is obtained from fitted parameters. On the other hand,
+   ADM1 and ADM2 are not derived quantities - they should be more similar to a1 or ecc. Try to understand how values of a1 and ecc are found!
+2  The basic class, where these computations are done, is: PSR_BINARY (in this modelu). This is then a parent class for other important class: 
+   BTmodel_modif_s0_univint(PSR_BINARY) (in BT_model_s0_univint.py).
+3. In PSR_BINARY or BTmodel_modif_s0_univint I should define ADM1 and ADM2 as functions. I will limit myself for the AMD1 for time being.
+
+4. pint/models/pulsar_binary
+    class `PulsarBinary` is a wrapper for binary model, so the class PSR_BINARY interacts with PINT - I should check it out.
+
+5. Here is also the Kepler equation, which needs to be modified - for now, I will ignore this and do it later after I know how to fit for ADM1.
+"""
+
+
+class PSR_BINARY_DM:
     """A base (generic) object for psr binary models.
 
     In this class, a set of generally used binary paramters and several commonly used
@@ -112,6 +128,9 @@ class PSR_BINARY:
             "GAMMA": 0 * u.second,                      #PK: (1) this is added here and also in the class BinaryBT_modif_s0_univint, in the module binary_bt_modif_s0_univint.py
             "FB0": 1.1574e-6 * u.Unit("") / u.second,
             #PK: (2) we add the following parameters
+            #
+            #Perhaps, I should put it into the child class BTmodel_modif_s0_univint(PSR_BINARY).
+            #
             "ADM1": 0 * u.Unit(""),
             "ADM2": 0 * u.Unit(""),
             "BDM": 0 * u.deg, #PK: but maybe it should be radians, check that!

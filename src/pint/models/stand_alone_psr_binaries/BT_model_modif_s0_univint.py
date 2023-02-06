@@ -2,7 +2,7 @@ import astropy.constants as c
 import astropy.units as u
 import numpy as np
 
-from .binary_generic_modif_s0_univint import PSR_BINARY
+from .binary_generic_modif_s0_univint import PSR_BINARY_DM
 
 
 """
@@ -71,7 +71,7 @@ BTmodel_modif_so_univint = class for computing binary time delays
 """
 
 
-class BTmodel_modif_s0_univint(PSR_BINARY):
+class BTmodel_modif_s0_univint(PSR_BINARY_DM):
     """This is a class independent from PINT platform for pulsar BT binary model.
     It is a subclass of PSR_BINARY class defined in file binary_generic.py in
     the same dierectory. This class is desined for PINT platform but can be used
@@ -311,7 +311,7 @@ class BTmodel_modif_s0_univint(PSR_BINARY):
 
         omegab = 2*np.pi/(self.pb())
 
-        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * E()
+        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * self.E() / ( 360 * u.deg ) * 2 * np.pi
 
 
 
