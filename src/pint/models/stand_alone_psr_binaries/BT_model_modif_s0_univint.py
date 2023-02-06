@@ -40,8 +40,36 @@ Open issues
 
 """
 
+# PK
+"""
+Context: Interaction between the scalar DM and ordinary matter
+Adm1 = amplitude of always present binary period modulation;        we want to find this from fitting
+Adm2 = effective description of resonance effect                    we want to find this from fitting, too
+Bdm  = local DM phase, in deg units                                 this we consider to be given (with a prior = continuous uniform distribution)
+mdm  = DM mass (or rather corresponding frequency)                  given, too
+
+omegab = 2*pi/Pb = binary's angular frequency
+E = eccentric anomaly, in deg units
+E/(360*u.deg)*2*np.pi = E in rad units
+"""
+
+# PK
+"""
+Function representing effect of DM on a binary system
+It has two terms:
+1st one - always present signal (propto Adm1)
+2nd one - effective description of resonance effects
+"""
 def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
-        return Adm1*(np.cos(Bdm)  -  np.cos(mdm/omegab*E + Bdm)) + Adm2*E/(360*u.deg)*2*np.pi
+        return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
+
+# PK
+"""
+BTmodel_modif_so_univint = class for computing binary time delays
+                           a subclass of PSR_binary in the binary_generic_modif_s0_univint module in the same directory
+                           to interact with PINT, it needs a pulsar binary wrapper - pint/models/binary_bt.py
+"""
+
 
 class BTmodel_modif_s0_univint(PSR_BINARY):
     """This is a class independent from PINT platform for pulsar BT binary model.
@@ -80,6 +108,16 @@ class BTmodel_modif_s0_univint(PSR_BINARY):
     @param OMDOT:       Time-derivative of OMEGA [0.0]
     """
 
+    # PK
+    """
+    Check:  param_default_value ... should be a directory
+            set_param_values()  ... should be a method
+            BTdelay_modif_s0_univint
+            d_BTdelay_d_par
+    """
+
+
+
     def __init__(self, t=None, input_params=None):
         super().__init__()
         self.binary_name = "BT_modif_s0_univint"
@@ -105,8 +143,14 @@ class BTmodel_modif_s0_univint(PSR_BINARY):
         # return self.a1() / c.c * np.sin(self.omega()) * (np.cos(self.E()) - self.ecc())
 
 
-        # what follows is a modification
-        # it seems that binary quantities are related to T0 time, so E(t_1) = 0, i.e. t1 = T0
+        # PK
+        """
+        Modifications of delayL1 - it includes a contribution coming from the DM
+
+        (?) It seems to me that binary parameters are determinated in time T0
+            i.e. t1 = T0 and E(t_1) = 0 
+        """
+         # waringing amd vs AMD ... check that!
         rdm = Rdm(self.ADM1, self.ADM2, self.BDM, self.MDM, 2*np.pi/self.pb(), self.E())
 
         x = self.a1() / c.c
@@ -256,7 +300,7 @@ class BTmodel_modif_s0_univint(PSR_BINARY):
     def d_delayL2_d_T0(self):
         return self.d_delayL2_d_E() * self.d_E_d_T0()
 
-    # 
+    # added derivatives of ADM1 with respc to ADM1 and ADM2
     def d_delayL1_d_ADM1(self):
 
         omegab = 2*np.pi/(self.pb())

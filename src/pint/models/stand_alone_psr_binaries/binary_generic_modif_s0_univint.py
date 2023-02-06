@@ -112,10 +112,10 @@ class PSR_BINARY:
             "GAMMA": 0 * u.second,
             "FB0": 1.1574e-6 * u.Unit("") / u.second,
             # added parameters
-            "ADM1": 0 * u.Unit(""),
-            "Adm2": 0 * u.Unit(""),
-            "BDM": 0 * u.deg, # but maybe it should be radians, check that!
-            "MDM": 0 * 1/u.second,
+            #"ADM1": 0 * u.Unit(""),
+            #"Adm2": 0 * u.Unit(""),
+            #"BDM": 0 * u.deg, # but maybe it should be radians, check that!
+            #"MDM": 0 * 1/u.second,
         }
         # For Binary phase calculation
         self.param_default_value.update(
