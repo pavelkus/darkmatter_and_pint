@@ -65,6 +65,22 @@ def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
 
 # PK
 """
+Derivative of Rdm w.r.t. ADM1 and ADM2
+"""
+def d_Rdm_d_ADM1(Bdm, mdm, omegab, E):
+    return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) 
+
+def d_Rdm_d_ADM2(E):
+    return E / ( 360 * u.deg ) * 2 * np.pi
+
+
+
+
+
+
+
+# PK
+"""
 BTmodel_modif_so_univint = class for computing binary time delays
                            a subclass of PSR_binary in the binary_generic_modif_s0_univint module in the same directory
                            to interact with PINT, it needs a pulsar binary wrapper - pint/models/binary_bt.py
@@ -300,18 +316,39 @@ class BTmodel_modif_s0_univint(PSR_BINARY_DM):
     def d_delayL2_d_T0(self):
         return self.d_delayL2_d_E() * self.d_E_d_T0()
 
-    # added derivatives of ADM1 with respc to ADM1 and ADM2
+    #PK new derivatives of delayL1 with respect to ADM1 and ADM2
+    # Note: I ignore terms with ADMX in derivatives, since their are not expected to be dominant
     def d_delayL1_d_ADM1(self):
 
         omegab = 2*np.pi/(self.pb())
 
-        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * (  np.cos(self.BDM) - np.cos(self.MDM/omegab * self.E() + self.BDM  )   )
+        alpha_0 = self.a1()/c.c * np.sin(self.omega())
 
-    def d_delayL1_d_ADM1(self):
+        return 2/3 * alpha_0 * (  np.cos(self.E()) - self.ecc()  ) * d_Rdm_d_ADM1(self.BDM, self.MDM, omegab, self.E() )        
+
+    def d_delayL1_d_ADM2(self):
+
+        alpha_0 = self.a1()/c.c * np.sin(self.omega())
+
+        return 2/3 * alpha_0 * (  np.cos(self.E()) - self.ecc()  ) * d_Rdm_d_ADM2(self.E())   
+
+
+    def d_delayL2_d_ADM1(self):
 
         omegab = 2*np.pi/(self.pb())
 
-        return 2/3*self.a1()/c.c*np.sin(self.omega())*(  np.cos(self.E()) - self.ecc()  ) * self.E() / ( 360 * u.deg ) * 2 * np.pi
+        beta_0 = self.a1()/c.c * np.cos(self.omega()) * np.sqrt(1 - self.ecc() ** 2)
+
+        return 2/3 * beta_0 *  np.sin(self.E()) * d_Rdm_d_ADM1(self.BDM, self.MDM, omegab, self.E() )        
+
+    def d_delayL2_d_ADM2(self):
+
+        beta_0 = self.a1()/c.c * np.cos(self.omega()) * np.sqrt(1 - self.ecc() ** 2)
+
+        return 2/3 * beta_0 * np.sin(self.E()) * d_Rdm_d_ADM2(self.E())  
+
+
+
 
 
 
