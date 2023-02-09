@@ -420,7 +420,7 @@ class PSR_BINARY_DM:
 
             delta1 = Mdm - omegab
 
-            return E - e * np.sin(E * 180 * u.deg / ( np.pi ))   - ma # * ( 1 - Adm1 * np.cos(Bdm) )   - Adm1 * ( np.sin( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( Mdm / omegab )        + Adm1 * e * ( np.sin( delta1 / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( 2 *  delta1 / omegab )     - Adm2 * ma * E - Adm2 * E**2 / 2
+            return E - e * np.sin(E * 180 * u.deg / ( np.pi ))   - ma  * ( 1 - Adm1 * np.cos(Bdm) )   - Adm1 * ( np.sin( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( Mdm / omegab )        + Adm1 * e * ( np.sin( delta1 / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( 2 *  delta1 / omegab )     - Adm2 * ma * E - Adm2 * E**2 / 2
         
         def d_f_d_E(E, ma, Mdm, Bdm, Pb, Adm1, Adm2, e):
 
@@ -428,7 +428,7 @@ class PSR_BINARY_DM:
 
             delta1 = Mdm - omegab
 
-            return 1 - e * np.cos(E * 180 * u.deg / ( np.pi ) ) # - Adm1 * np.cos( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm )   + Adm1 * 0.5 * e * np.cos( delta1/omegab * E * 180 * u.deg / ( np.pi ) + Bdm )     - Adm2 * ma - Adm2 * E
+            return 1 - e * np.cos(E * 180 * u.deg / ( np.pi ) )  - Adm1 * np.cos( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm )   + Adm1 * 0.5 * e * np.cos( delta1/omegab * E * 180 * u.deg / ( np.pi ) + Bdm )     - Adm2 * ma - Adm2 * E
 
         #PK: This is just the initial guess: E_0 = ma
         U = ma
