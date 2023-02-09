@@ -76,7 +76,7 @@ class BinaryBT_modif_s0_univint(PulsarBinary):
             floatParameter(
                 name="MDM",
                 value=0.0,
-                units="1/s^1",
+                units="1/day",
                 description="DM - mass scale",
             )
         )
