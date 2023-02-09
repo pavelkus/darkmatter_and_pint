@@ -134,7 +134,7 @@ class PSR_BINARY_DM:
             "ADM1": 0 * u.Unit(""),
             "ADM2": 0 * u.Unit(""),
             "BDM": 0 * u.deg, #PK: but maybe it should be radians, check that!
-            "MDM": 0 * 1/u.second,
+            "MDM": 0 * 1/u.day,
         }
         # For Binary phase calculation
         self.param_default_value.update(
@@ -400,12 +400,43 @@ class PSR_BINARY_DM:
             ma = np.longdouble(mean_anomaly).value
         else:
             ma = mean_anomaly
+            
+
+
+        '''  
         k = lambda E: E - e * np.sin(E) - ma  # Kepler Equation
         dk = lambda E: 1 - e * np.cos(E)  # derivative Kepler Equation
         U = ma
         while np.max(abs(k(U))) > 5e-15:  # Newton-Raphson method
             U = U - k(U) / dk(U)
         return U * u.rad
+        '''
+
+        
+        #PK: I need to modify the Kepler equation   
+        def f(E, ma, Mdm, Bdm, Pb, Adm1, Adm2, e):
+
+            omegab = 2 * np.pi / Pb
+
+            delta1 = Mdm - omegab
+
+            return E - e * np.sin(E * 180 * u.deg / ( np.pi ))   - ma # * ( 1 - Adm1 * np.cos(Bdm) )   - Adm1 * ( np.sin( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( Mdm / omegab )        + Adm1 * e * ( np.sin( delta1 / omegab * E * 180 * u.deg / ( np.pi ) + Bdm  ) - np.sin( Bdm  ) ) / ( 2 *  delta1 / omegab )     - Adm2 * ma * E - Adm2 * E**2 / 2
+        
+        def d_f_d_E(E, ma, Mdm, Bdm, Pb, Adm1, Adm2, e):
+
+            omegab = 2*np.pi/Pb
+
+            delta1 = Mdm - omegab
+
+            return 1 - e * np.cos(E * 180 * u.deg / ( np.pi ) ) # - Adm1 * np.cos( Mdm / omegab * E * 180 * u.deg / ( np.pi ) + Bdm )   + Adm1 * 0.5 * e * np.cos( delta1/omegab * E * 180 * u.deg / ( np.pi ) + Bdm )     - Adm2 * ma - Adm2 * E
+
+        #PK: This is just the initial guess: E_0 = ma
+        U = ma
+        while np.max(abs(f(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e))) > 5e-15:  # Newton-Raphson method
+            U = U - f(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e) / d_f_d_E(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e)
+        return U * u.rad
+        
+
 
     def get_tt0(self, barycentricTOA):
         """tt0 = barycentricTOA - T0"""
