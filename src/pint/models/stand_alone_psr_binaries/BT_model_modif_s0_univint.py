@@ -4,42 +4,6 @@ import numpy as np
 
 from .binary_generic_modif_s0_univint import PSR_BINARY_DM
 
-
-"""
-This version of the BT model is under construction. Overview of progress:
-
-[v] = Done, [x] = With errors, [ ] = Not done
-
-Calculations
-============
-[v] Pulse period (Pobs)
-[v] Pulse delay (delay)
-[v] Derivatives of Pobs (d_Pobs_d_xxx)
-[v] Derivatives of delay (d_delay_d_xxx)
-[ ] Wrapper function for Derivatives
-Interface
-=========
-[v] Caching (with decorator)
-[v] Astropy units
-[v] Setting & getting parameters
-
-Code quality
-============
-[ ] Docstrings
-[ ] Unit tests (wrt tempo2 or internally?)
-[x] Formatting (pylint)
-
-Open issues
-===========
-[x] In delayR(), I would think we need to use self.pbprime().
-    However, tempo2 seems consistent with self.pb()
-    -- RvH: July 2, 2015
-[ ] We are ignoring the derivatives of delayR() at the moment. This is a decent
-    approximation for non-relativistic orbital velocities (1 part in ~10^6)
-[ ] Tempo2 BTmodel automatically sets EDOT to zero
-
-"""
-
 # PK
 """
 Context: Interaction between the scalar DM and ordinary matter
@@ -57,7 +21,7 @@ E/(360*u.deg)*2*np.pi = E in rad units
 """
 Function representing effect of DM on a binary system
 It has two terms:
-1st one - always present signal (propto Adm1)
+1st one - always present signal (propto ADM1)
 2nd one - effective description of resonance effects
 """
 def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
@@ -75,13 +39,9 @@ def d_Rdm_d_ADM2(E):
 
 
 
-
-
-
-
 # PK
 """
-BTmodel_modif_so_univint = class for computing binary time delays
+BTmodel_modif_s0_univint = class for computing binary time delays
                            a subclass of PSR_binary in the binary_generic_modif_s0_univint module in the same directory
                            to interact with PINT, it needs a pulsar binary wrapper - pint/models/binary_bt.py
 """
@@ -167,7 +127,7 @@ class BTmodel_modif_s0_univint(PSR_BINARY_DM):
             i.e. t1 = T0 and E(t_1) = 0 
         """
          # waringing amd vs AMD ... check that!
-        rdm = Rdm(self.ADM1, self.ADM2, self.BDM, self.MDM, 2*np.pi/self.pb(), self.E())
+        rdm = Rdm(self.ADM1, self.ADM2, self.BDM, self.MDM, 2*np.pi/self.pb(), self.E())  # I should check unit conversion.
 
         x = self.a1() / c.c
         alpha_t1 = x * np.sin(self.omega())

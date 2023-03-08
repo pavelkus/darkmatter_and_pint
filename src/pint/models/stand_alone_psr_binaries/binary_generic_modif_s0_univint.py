@@ -403,16 +403,16 @@ class PSR_BINARY_DM:
             
 
 
-        '''  
+         
         k = lambda E: E - e * np.sin(E) - ma  # Kepler Equation
         dk = lambda E: 1 - e * np.cos(E)  # derivative Kepler Equation
         U = ma
         while np.max(abs(k(U))) > 5e-15:  # Newton-Raphson method
             U = U - k(U) / dk(U)
         return U * u.rad
-        '''
-
         
+
+        '''
         #PK: I need to modify the Kepler equation   
         def f(E, ma, Mdm, Bdm, Pb, Adm1, Adm2, e):
 
@@ -435,7 +435,7 @@ class PSR_BINARY_DM:
         while np.max(abs(f(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e))) > 5e-15:  # Newton-Raphson method
             U = U - f(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e) / d_f_d_E(U,ma,self.MDM,self.BDM,self.PB,self.ADM1,self.ADM2, e)
         return U * u.rad
-        
+        '''
 
 
     def get_tt0(self, barycentricTOA):
