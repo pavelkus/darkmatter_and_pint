@@ -25,22 +25,37 @@ It has two terms:
 2nd one - effective description of resonance effects
 """
 def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
-    k = mdm/omegab
-    if ( k <= 0.1 ):
-        return  Adm1 * ( k * E * np.sin(Bdm) + 0.5 * k * k * E * E * np.cos(Bdm) )  + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
-    else:
-        return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
+    k = mdm/omegab  # array
+    return_array = []
 
+
+    for j in range(len(k)):
+    
+        if ( k[j] <= 0.1 ):
+            array_item =  Adm1 * ( k[j] * E[j] * np.sin(Bdm) + 0.5 * k[j] * k[j] * E[j] * E[j] * np.cos(Bdm) )  + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
+            return_array.append(array_item)
+
+        else:
+            array_item = Adm1 * ( np.cos(Bdm)  -  np.cos(E[j] * mdm / omegab + Bdm) ) + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
+            return_array.append(array_item)
+            
+        return_array = np.array(return_array)
+
+        return return_array
+
+    # return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 # PK
 """
 Derivative of Rdm w.r.t. ADM1 and ADM2
 """
 def d_Rdm_d_ADM1(Bdm, mdm, omegab, E):
-    k = mdm/omegab
-    if ( k <= 0.1 ):
-        return k * E * np.sin(Bdm) + 0.5 * k * k * E * E * np.cos(Bdm) 
-    else:
-        return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) 
+    #k = mdm/omegab
+    #if ( k <= 0.1 ):
+    #    return k * E * np.sin(Bdm) + 0.5 * k * k * E * E * np.cos(Bdm) 
+    #else:
+    #    return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) 
+    
+     return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm)
 
 def d_Rdm_d_ADM2(E):
     return E / ( 360 * u.deg ) * 2 * np.pi
