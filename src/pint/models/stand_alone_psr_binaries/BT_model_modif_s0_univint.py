@@ -29,21 +29,21 @@ def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
     return_array = []
 
 
-    for j in range(len(k)):
+    #for j in range(len(k)):
     
-        if ( k[j] <= 0.1 ):
-            array_item =  Adm1 * ( k[j] * E[j] * np.sin(Bdm) + 0.5 * k[j] * k[j] * E[j] * E[j] * np.cos(Bdm) )  + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
-            return_array.append(array_item)
+    #    if ( k[j] <= 0.1 ):
+    #        array_item =  Adm1 * ( k[j] * E[j] * np.sin(Bdm) + 0.5 * k[j] * k[j] * E[j] * E[j] * np.cos(Bdm) )  + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
+    #        return_array.append(array_item)
 
-        else:
-            array_item = Adm1 * ( np.cos(Bdm)  -  np.cos(E[j] * mdm / omegab + Bdm) ) + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
-            return_array.append(array_item)
-            
-        return_array = np.array(return_array)
+    #    else:
+    #        array_item = Adm1 * ( np.cos(Bdm)  -  np.cos(E[j] * mdm / omegab + Bdm) ) + Adm2 * E[j] / ( 360 * u.deg ) * 2 * np.pi
+    #        return_array.append(array_item)
 
-        return return_array
+    #    return_array = np.array(return_array)
 
-    # return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
+    #    return return_array
+
+     return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 # PK
 """
 Derivative of Rdm w.r.t. ADM1 and ADM2
