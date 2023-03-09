@@ -49,7 +49,7 @@ def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
     #return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 
     # PK: Scenerios with small masses
-    return Adm1 * ( mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**2  - 1/6 * np.sin(Bdm) * (mdm/omegab)**3 * (E / ( 360 * u.deg ) * 2 * np.pi)**3 - 1/24 * np.cos(Bdm) * (mdm/omegab)**4 * (E / ( 360 * u.deg ) * 2 * np.pi)**4                                     ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
+    return Adm1 * ( mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**2  - 1/6 * np.sin(Bdm) * (mdm/omegab)**3 * (E / ( 360 * u.deg ) * 2 * np.pi)**3 - 1/24 * np.cos(Bdm) * (mdm/omegab)**4 * (E / ( 360 * u.deg ) * 2 * np.pi)**4   + 1/120 * (mdm/omegab)**5 * np.sin(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**5 + 1/720 * (mdm/omegab)**6*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**6                                    ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 
 
 # PK
@@ -64,7 +64,7 @@ def d_Rdm_d_ADM1(Bdm, mdm, omegab, E):
     #    return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) 
     
     # return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm)
-    return mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**2  - 1/6 * np.sin(Bdm) * (mdm/omegab)**3 * (E / ( 360 * u.deg ) * 2 * np.pi)**3 - 1/24 * np.cos(Bdm) * (mdm/omegab)**4 * (E / ( 360 * u.deg ) * 2 * np.pi)**4    
+    return mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**2  - 1/6 * np.sin(Bdm) * (mdm/omegab)**3 * (E / ( 360 * u.deg ) * 2 * np.pi)**3 - 1/24 * np.cos(Bdm) * (mdm/omegab)**4 * (E / ( 360 * u.deg ) * 2 * np.pi)**4   + 1/120 * (mdm/omegab)**5 * np.sin(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**5 + 1/720 * (mdm/omegab)**6*np.cos(Bdm) * (E / ( 360 * u.deg ) * 2 * np.pi)**6     
 
 def d_Rdm_d_ADM2(E):
     return E / ( 360 * u.deg ) * 2 * np.pi
