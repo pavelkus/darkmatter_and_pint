@@ -49,7 +49,7 @@ def Rdm(Adm1, Adm2, Bdm, mdm, omegab, E):
     #return  Adm1 * ( np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 
     # PK: Scenerios with small masses
-    return Adm1 * ( mdm / omegab * E * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
+    return Adm1 * ( mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm) ) + Adm2 * E / ( 360 * u.deg ) * 2 * np.pi
 
 
 # PK
@@ -64,7 +64,7 @@ def d_Rdm_d_ADM1(Bdm, mdm, omegab, E):
     #    return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm) 
     
     # return np.cos(Bdm)  -  np.cos(E * mdm / omegab + Bdm)
-    return mdm / omegab * E * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm)
+    return mdm / omegab * E / ( 360 * u.deg ) * 2 * np.pi * np.sin(Bdm) + 0.5 * (mdm/omegab)**2*np.cos(Bdm)
 
 def d_Rdm_d_ADM2(E):
     return E / ( 360 * u.deg ) * 2 * np.pi
