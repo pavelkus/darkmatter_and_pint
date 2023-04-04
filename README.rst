@@ -30,15 +30,6 @@ so it accounts for the dark matter effects on binary systems. Current objectives
 More information
 ----------------
 
-If you wish to find:
-
-* a brief summary of the relevant theory,
-
-* used data (.par and .tim files),
-
-* pulsar timing Colab projects (online Jupiter notebooks provided by Google),
-you can go to `this Google disk <https://drive.google.com/drive/folders/1magzC6W0NgJsdsqvJf_niXF6-djLiOOW?usp=share_link/>`_.
-
 More about PINT can be found `here <https://nanograv-pint.readthedocs.io/en/latest/ />`_ and in the folder "PINT_MoreInfo" (there, particularly PINT's authors and licence).
 
 
